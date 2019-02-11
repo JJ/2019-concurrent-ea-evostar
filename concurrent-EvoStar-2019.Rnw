@@ -52,6 +52,8 @@ Sergio Rojas-Galeano\inst{4}
  \email{srojas@udistrital.edu.co}
 }
 
+%\authorrunning{Merelo et al.}
+%\titlerunning{Exploring concurrent and stateless EAs}
 
 \maketitle
 
@@ -68,8 +70,7 @@ find out the best combination for a particular problem.
 \end{abstract}
 
 \keywords{Concurrent algorithms, distributed computing, stateless algorithms,
-algorithm implementation, performance evaluation, distributed computing,
-heterogeneous distributed systems.}
+algorithm implementation, performance evaluation.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
