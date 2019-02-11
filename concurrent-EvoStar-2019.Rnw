@@ -9,7 +9,7 @@
 
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+%\SweaveOpts{concordance=TRUE}
 
 <<setup, cache=FALSE,echo=FALSE>>=
 library(ggplot2)
@@ -53,15 +53,6 @@ Sergio Rojas-Galeano\inst{4}
 }
 
 
-%\author{A. U. Thorone \inst{1}
-%\and
-%A. U. Thortwo \inst{2}}
-%
-%\institute{%
-%Institute One\\
-%\and
-%Institute Two
-%}
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,7 +63,7 @@ with communication, but from the evolutionary point of view another challenge is
 keep diversity high so that the algorithm is not stuck in local
 minima. In a concurrent setting, we will have to find the right
 balance so that improvements in both facets do not cancel out. In this paper we address such an issue, by exploring the space of
-parameters of a population based concurrent evolutionary algorithm thet yields to
+parameters of a population based concurrent evolutionary algorithm that yields to
 find out the best combination for a particular problem.
 \end{abstract}
 
@@ -201,7 +192,7 @@ repository.
 \begin{figure*}[h!tb]
 \fbox{
   \centering
-<<results-evals,cache=FALSE,echo=FALSE>>=
+<<results-evals,cache=FALSE,echo=FALSE,fig.height=4>>=
 ggplot(data,aes(x=evaluations,y=time,color=gap))+scale_color_brewer(palette="Set1")+geom_point(size=3,aes(shape=gap))+theme_tufte()+labs(x="Evaluations",y="Time",title="Evaluations vs Time per generation gap")
 @
 }
@@ -225,7 +216,7 @@ ggplot(data,aes(x=gap,y=evaluations,group=gap))+geom_boxplot()+theme_tufte()+lab
 \begin{figure*}[h!tb]
   \fbox{
   \centering
-<<results-avg-evals,cache=FALSE,echo=FALSE>>=
+<<results-avg-evals,cache=FALSE,echo=FALSE,fig.height=4>>=
 ggplot(data,aes(x=gap,y=avg.eval,group=gap))+geom_boxplot()+theme_tufte()+labs(title="Average number of evaluations vs generation gap")
 @
 }
@@ -237,7 +228,7 @@ ggplot(data,aes(x=gap,y=avg.eval,group=gap))+geom_boxplot()+theme_tufte()+labs(t
 \begin{figure*}[h!tb]
 \fbox{
   \centering
-<<results-avg-time,cache=FALSE,echo=FALSE>>=
+<<results-avg-time,cache=FALSE,echo=FALSE,fig.height=4>>=
 ggplot(data,aes(x=gap,y=time,group=gap))+geom_boxplot()+theme_tufte()+labs(title="Time vs generation gap")
 @
 }
@@ -320,13 +311,13 @@ while, at the same time, increasing by a small quantity the number of
 evaluations needed to find the solution.
 
 For the specific problem we have used in this short paper, a 64-bit
-Onemax, the generation gap that seems to be more appropiate is around 16. The time to
+Onemax, the generation gap that seems to be more appropriate is around 16. The time to
 communication for that specific generation gap is around 2 seconds,
 since 16 generations imply 4096 evaluations and evaluation speed is
 approximately 2K/s. This gives us a ballpark of the amount of
 computation that is needed for concurrency to be efficient. In this
 case, we are sending the whole population to the communication
-channel, and this implies a certain overhead in reading, transmiting
+channel, and this implies a certain overhead in reading, transmitting
 and writing. Increasing the population size also increases that
 overhead.
 
@@ -341,8 +332,8 @@ particular amount of time is reached.
 With these conclusions in mind, we can set out to work with other
 parameters, such as population size or number of initial populations,
 so that the loss of diversity for bigger population sizes can be
-overcomed. Also we have to somehow address the problem of the message
-size during communication to and from the channel; in this respect, we are planning to resort to a compact representation of the population, obtained either by a statistical distribution model or  a standard compression algorithm. This is left as an anvenue for future work.
+overcome. Also we have to somehow address the problem of the message
+size during communication to and from the channel; in this respect, we are planning to resort to a compact representation of the population, obtained either by a statistical distribution model or  a standard compression algorithm. This is left as an avenue for future work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
@@ -352,11 +343,9 @@ size during communication to and from the channel; in this respect, we are plann
  Competitiveness), DeepBio (TIN2017-85727-C4-2-P) and AMED (co-funded by European Regional Development Fund and the region Normandy). I would like to
  express my gratefulness to the users in the \#perl6 IRC channel,
  specially Elizabeth Mattijsen, Timo Paulsen and Zoffix Znet, who
- helped me with the adventure of programming efficient concurrent
+ helped us with the adventure of programming efficient concurrent
  evolutionary algorithms. 
-%Acknowledgements taking\\
-%this much\\
-%space
+
 
 \bibliographystyle{splncs04}
 \bibliography{geneura,concurrent,perl6}
