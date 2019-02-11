@@ -348,7 +348,7 @@ size during communication to and from the channel; in this respect, we are plann
  evolutionary algorithms. 
 
 
-\bibliographystyle{splncs04}
+\bibliographystyle{splncs03}
 \bibliography{geneura,concurrent,perl6}
 
 \end{document}
