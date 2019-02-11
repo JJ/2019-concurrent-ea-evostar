@@ -1,0 +1,3 @@
+Exploring concurrent and stateless evolutionary algorithms
+
+Creating a concurrent and stateless version of an evolutionary algorithm implies changes in its algorithmic model. From the performance point of view, the main challenge is to balance computation with communication, but from the evolutionary point of view another challenge is to keep diversity high so that the algorithm is not stuck in local minima. In a concurrent setting, we will have to find the right balance so that improvements in both facets do not cancel out. In this paper we address such an issue, by exploring the space of parameters of a population based concurrent evolutionary algorithm that yields to find out the best combination for a particular problem.
