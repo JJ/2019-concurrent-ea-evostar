@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Scaling in concurrent evolutionary algorithms</title>
+    
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/extra.css">
+    <link rel="stylesheet" href="css/theme/sky.css">
+    
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement( 'link' );
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+     document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section data-background='parque-tayrona.jpg'>
+	  <h1>Scaling in concurrent evolutionary algorithms</h1>
+    <h3>JJ Merelo, JLJ Laredo, Pedro Castillo, <P>J. Mario García-Valdez, Sergio Rojas-Galeano</h3>
+  </section>
+
+	<!-- Concurrency -->
+	<section>
+    <h1>Leverage modern processor architectures to improve EA</h1>
+	  <h2 class='fragment'>Via <strong>concurrent</strong> programming</h1> 
+	</section>
+
+  <section>
+    <h1>Concurrent programming paradigm</h1>
+	  <h2 class='fragment'>Adds a <strong>layer of abstraction</strong></strong> over parallel architecture</h1> 
+	</section>
+
+	<section><h1>Communicating sequential processes</h1>
+    <h1 class='fragment'><strong>Stateless</strong> threads writes to/read from <strong>channels</strong></h1> 
+    <h3 class='fragment'>Supported <strong>natively</strong> by many modern languages: <strong>Perl6, Julia, Go</h3>strong></strong></h1> 
+	</section>
+
+	<!-- Problems with EAs -->
+	<section><h1>Evolutionary algorithms are <strong>not</strong> stateless</h1>
+	  <aside class='notes'>Mutation, crossover, selection, no problem. But there are problems with...</aside>
+	</section>
+
+
+<!-- Implementing a concurrent evolutionary algorithm in Perl 6 -->
+<section>
+    <h1>Challenge: design a <strong>stateless</strong> EA on this architecture</h1>
+</section>
+
+<section>
+  <h1>Previous work</h1>
+  <h2 class='fragment'>Use underlying platform scheduler to scale-up parallelism [14, 18, 19] </h3>
+  <h2 class='fragment'>Proof-of-concept of <strong>stateless, <p> channel-based </strong> EA in Perl6 [22]. </h3>
+</section>
+
+<section>
+  <h1>This work</h1>
+  <h2 class='fragment'>Focus on communicating <strong>messages</strong>... </h3>
+  <h2 class='fragment'>... with a view to scale-up</h3>
+  <h2 class='fragment'>Consider <strong>loss-less and lossy</strong> population compression</h3>
+</section>
+
+<!-- Channel-based EA -->
+<section>
+  <img src='channel-EA.png' height="650" alt='Channel-based EA'>
+</section>
+
+<!-- Experimental results -->
+<section>
+  <h1>Results</h1>
+  <h3 class='fragment'>OneMax, Royal Road and Leading Ones (64 bits)</h3> 
+  <h3 class='fragment'>Pop size: 1024, 8192, 4096, respectively</h3> 
+  <h3 class='fragment'>Ubuntu 18.04 OS and an AMD Ryzen 7 2700X <p>Eight-Core Processor at 3.7GHz</h3>
+</section>
+
+<section> 
+  <section data-background='Fig4.png'><h3><strong>OneMax: Evaluations vs Threads</strong></h3></section>
+  <section data-background='Fig5.png'><h3><strong>OneMax: Time vs Threads</strong></h3></section>
+  <section data-background='Fig6.png'><h3><strong>OneMax: Evaluation/time vs Threads</strong></h3></section>
+</section>
+
+<section> 
+    <section data-background='Fig7.png'><h3><strong>RoyalRoad: Evaluations vs Threads</strong></h3></section>
+    <section data-background='Fig8.png'><h3><strong>RoyalRoad: Time vs Threads</strong></h3></section>
+    <section data-background='Fig9.png'><h3><strong>RoyalRoad: Evaluation/time vs Threads</strong></h3></section>
+</section>
+
+<section> 
+    <section data-background='Fig10.png'><h3><strong>LeadingOnes: Evaluations vs Threads</strong></h3></section>
+    <section data-background='Fig11.png'><h3><strong>LeadingOnes: Time vs Threads</strong></h3></section>
+    <section data-background='Fig12.png'><h3><strong>LeadingOnes: Evaluation/time vs Threads</strong></h3></section>
+  </section>
+
+<section data-background='parque-tayrona.jpg'>
+    <h2>Take aways</h1>
+    <h3 class='fragment'><strong>Message design</strong> has major impact in concurrent EAs</h3>
+    <h3 class='fragment'>What about using <strong>non-binary</strong> representations?</h3>
+    <h3 class='fragment'>What about using <strong>non-homogenous</strong> threads?</h3>
+    <h3 class='fragment'>What about using <strong>decomposition</strong> threads?</h3>    
+</section>
+
+<section data-background='parque-tayrona.jpg'>
+    <h1>Thanks!</h1>
+    <h2>Questions? Comments? Welcome! <p> <strong>jmerelo @ ugr.es</strong> <p> <strong>srojas @ udistrital.edu.co</strong></h3>
+</section>
+      </div>
+    </div>
+    
+   
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    
+    <script>
+     // More info about config & dependencies:
+     // - https://github.com/hakimel/reveal.js#configuration
+     // - https://github.com/hakimel/reveal.js#dependencies
+     Reveal.initialize({
+      history: true,
+      width: '99%',
+       dependencies: [
+	 { src: 'plugin/notes/notes.js', async: true },
+	 { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+       ]
+     });
+    </script>
+  </body>
+</html>
